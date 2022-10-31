@@ -3,7 +3,8 @@
 {% block title %} PataJob | Login{% endblock %}
 
 {% block content %}
-<form action="/login/" method="post" class="d-flex flex-column align-items-center justify-content-center mb-40 mt-40">
+<form action="/login/" method="post" class="d-flex flex-column align-items-center justify-content-center mb-40 mt-40" accept-charset="utf-8" enctype="multipart/form-data">
+    <h4>Login </h4>
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Login" class="btn btn-primary register-btn mb-20">

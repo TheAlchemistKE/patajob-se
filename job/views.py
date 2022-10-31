@@ -23,17 +23,18 @@ class JobDetailView(DetailView):
     template_name = 'job/job_details.html'
 
 
-def apply_to_job(request, job_id):
-    job = Job.objects.get(id=job_id)
-    application = Application(job_id=job, applicant_id=request.user)
-    application.save()
-    return render(request, 'application/index.html', {'application': application, 'job': job})
-
-
 summary = summarize_resume(
     '/Users/kelyn_njeri/Desktop/Projects/Personal/DjangoProjects/patajob/job/Kelyn Njeri - Software Engineer.pdf')
 job_summary = summarize_resume(
     '/Users/kelyn_njeri/Desktop/Projects/Personal/DjangoProjects/patajob/job/Job Description.pdf')
+
+
+def apply_to_job(request, job_id):
+    job = Job.objects.get(id=job_id)
+    score = match(job_id)
+    application = Application(job_id=job, applicant_id=request.user, applicant_match_score=score)
+    application.save()
+    return render(request, 'application/index.html', {'application': application, 'job': job})
 
 
 def match_insight(request, job_id):
@@ -48,3 +49,16 @@ def match_insight(request, job_id):
     soft_skills = resume_summary['candidate_keywords']['soft_skills']
 
     return render(request, 'applicant/index.html', {'score': score, 'technical_skills': tech_skills, 'soft_skills': soft_skills})
+
+
+def match(job_id):
+    job = Job.objects.get(id=job_id)
+    resume_summary = summary
+    job_description_summary = analyze_job_description(job.role_entails)[1]
+
+    score = calculate_match_score(
+        job_description_summary['technical_skills'],
+        resume_summary['candidate_keywords']['technical_skills'])
+
+    return score
+

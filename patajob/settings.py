@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'application.apps.ApplicationConfig',
     'authentication.apps.AuthenticationConfig',
     'company.apps.CompanyConfig',
+    'contact.apps.ContactConfig',
     'job.apps.JobConfig',
     'users.apps.UsersConfig',
 ]

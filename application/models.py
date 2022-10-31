@@ -21,5 +21,9 @@ class Application(models.Model):
     job_id = models.ForeignKey(Job, on_delete=models.CASCADE, null=True)
     applicant_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True, unique=False)
     applied_date = models.DateTimeField(auto_now_add=True)
+    applicant_match_score = models.IntegerField(default=0)
     decision_status = models.IntegerField(choices=APPLICATION_STATUS, default=0)
     decision_date = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return self.applicant_id.email

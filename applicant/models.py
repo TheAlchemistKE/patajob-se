@@ -11,7 +11,7 @@ class Applicant(models.Model):
     headshot = models.FileField(upload_to='headshots/', null=True)
     resume = models.FileField(upload_to='resumes/', null=True)
     job_title = models.CharField(max_length=200)
-    social_media = ArrayField(models.CharField(max_length=200), default=list)
+    social_media = models.URLField(null=True)
     portfolio = models.URLField(null=True)
     about = models.TextField(null=True)
     technical_skills = ArrayField(models.CharField(max_length=200), default=list)

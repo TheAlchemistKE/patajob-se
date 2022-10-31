@@ -14,9 +14,9 @@ def reject_users(modeladmin, request, queryset):
 
 
 class ApplicationAdmin(admin.ModelAdmin):
-    list_display = ('job_id', 'applicant_id', 'applied_date',
+    list_display = ('job_id', 'applicant_id', 'applied_date', 'applicant_match_score',
                     'decision_status', 'decision_date')
-    list_filter = ('job_id', 'applicant_id', 'applied_date',
+    list_filter = ('job_id', 'applicant_id', 'applied_date','applicant_match_score',
                    'decision_status', 'decision_date')
     sortable_by = ('job_id', 'applicant_id', 'applied_date',
                    'decision_status', 'decision_date')

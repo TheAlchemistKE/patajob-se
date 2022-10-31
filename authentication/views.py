@@ -44,15 +44,17 @@ def register(request):
             last_name = form.cleaned_data['last_name']
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
+            current_title = form.cleaned_data['job_title']
+            github_link = form.cleaned_data['social_media']
+            portfolio = form.cleaned_data['portfolio']
+            about = form.cleaned_data['about']
             user = User.objects.create_user(username, email, password)
             user.first_name = first_name
             user.last_name = last_name
             fullname = first_name + " " + last_name
-            resume = request.FILES["resume"]
-            headshot = request.FILES["headshot"]
-            applicant = Applicant(fullname=fullname, headshot=headshot, )
-            send_activation_email(request, user)
+            applicant = Applicant.objects.create(fullname=fullname, job_title=current_title, social_media=github_link, portfolio=portfolio, about=about)
             user.save()
+            applicant.save()
             return redirect('login')
     else:
         form = RegisterForm()
