@@ -1,5 +1,7 @@
 {% extends '../components/base.html' %}
 
+{% block title %} PataJob | {{ job.title }}{% endblock %}
+
 {% block content %}
 {% load static %}
     <!-- Hero Area Start-->
@@ -35,7 +37,7 @@
                                     </a>
                                     <ul>
                                         <li><i class="fas fa-map-marker-alt"></i>{{ job.work_type }}</li>
-                                        <li>${{ job.minimum_salary }} - ${{ job.maximum_salary }}</li>
+                                        <li>KES{{ job.minimum_salary }} - KES{{ job.maximum_salary }}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -94,7 +96,7 @@
                           <ul>
                               <li>Posted date : <span>{{ job.created_at }}</span></li>
                               <li>Job nature : <span>Full time</span></li>
-                              <li>Salary :  <span>${{ job.maximum_salary }} yearly</span></li>
+                              <li>Salary :  <span>KES{{ job.maximum_salary }} monthly</span></li>
                           </ul>
                          <div class="apply-btn2">
                              <a href="{% url 'apply_to_job' job.id %}" class="btn">Apply Now</a>

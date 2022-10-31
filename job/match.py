@@ -12,7 +12,7 @@ def calculate_applicant_job_match(skills_required, applicant_skills):
     overlap = applicant_skills_set & skills_required_set
     universe = applicant_skills_set | skills_required_set
 
-    match = (float(len(overlap)) / len(universe)) * 100
+    match = ((float(len(overlap)) / len(universe)) * 100) + 50
     return match
 
 

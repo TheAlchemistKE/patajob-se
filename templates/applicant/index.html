@@ -9,20 +9,20 @@
         <h4>Job Match Percentage</h4>
         <p>{{ score }}</p>
         <h4>Match Score Deduction</h4>
-        {% if score < 90 %}
-            <p class="mb-30">Low Match</p>
-        {% elif score >= 50 %}
-            <p class="mb-30">Low Match</p>
+        {% if score >= 50 %}
+            <p class="mb-30">Good Match</p>
+        {% elif score >= 90 %}
+             <p class="mb-30">Perfect Match. Please Apply</p>
 
         {% else %}
-            <p class="mb-30">Perfect Match. Please Apply</p>
+            <p class="mb-30">Low Match</p>
         {% endif %}
 
     </div>
 
 
     <div class="technical-skill d-flex flex-column justify-content-center align-items-center mt-20 mb-20" style="width: 600px; margin: 0 auto;">
-        <h4>Technical Skills</h4>
+        <h4>Technical Skills Found in Resumé</h4>
         <ul style="width: 500px !important; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; margin: 0 auto;">
                 {% for skill in technical_skills %}
                     <li style="border: 1px solid #ccc; padding: 5px 8px; border-radius: 20px; margin: 5px 0; width: fit-content; height: fit-content;" class="text-center">{{ skill }}</li>
@@ -32,7 +32,7 @@
     </div>
 
      <div class="soft-skill d-flex flex-column justify-content-center align-items-center mt-20 mb-20">
-        <h4>Soft Skills</h4>
+        <h4>Soft Skills Found in Resumé</h4>
         <ul class="w-75 d-flex flex-row justify-content-center align-items-center">
               {% for skill in soft_skills %}
                     <li style="border: 1px solid #ccc; padding: 5px 8px; border-radius: 20px; margin: 5px 0; width: fit-content; height: fit-content;" class="text-center">{{ skill }}</li>
